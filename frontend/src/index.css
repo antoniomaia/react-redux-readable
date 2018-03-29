@@ -44,3 +44,17 @@ a:link {
   padding: 10px 50px;
   margin: 5px;
 }
+
+/* New Post Button */
+
+.newPost {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.newPostBtn {
+  background-color: #607D8B;
+  color: #FFFFFF;
+  padding: 5px;
+}
