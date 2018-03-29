@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchPosts } from '../actions';
 import moment from 'moment';
 
@@ -34,6 +35,11 @@ class PostsIndex extends Component {
     render() {
         return (
             <div>
+                <div className="newPost">
+                    <Link className="newPostBtn" to="/posts/new">
+                        New Post
+                    </Link>
+                </div>
                 <article>
                     <section className="posts">
                         {this.renderPosts()}
