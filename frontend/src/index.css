@@ -30,7 +30,7 @@ a:link {
   margin: 0;
 }
 
-/* Posts */
+/* Posts Index */
 
 .posts{
   display: flex;
@@ -57,4 +57,61 @@ a:link {
   background-color: #607D8B;
   color: #FFFFFF;
   padding: 5px;
+}
+
+/* Post Form */
+
+.invalid {
+  border: 1px solid red;
+}
+form{
+  margin-top: 1.5em;
+}
+
+.form-wrapper{
+  background-color: #B3E5FC;
+  list-style-type: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+}
+
+
+.form-row > label {
+  padding: .5em 1em .5em 0;
+}
+
+.form-row > input{
+  padding: .5em;
+}
+
+.form-wrapper > button {
+  justify-content: center;
+  margin: .8em;
+  padding: 2em;
+  background: #607D8B;
+  color: #FFFFFF;
+  border: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .form-row > input {
+   flex: 3;  
+}
+}
+@media screen and (min-width: 992px) {
+  .form-row > input {
+   flex: 4;  
+}
+}
+@media screen and (min-width: 1200px) {
+  .form-row > input {
+   flex: 5;  
+}
 }
