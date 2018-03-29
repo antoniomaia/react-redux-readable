@@ -9,13 +9,14 @@ import promise from 'redux-promise';
 
 import reducers from './reducers';
 import PostsIndex from './components/posts_index';
+import Header from './components/Header';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
-        <BrowserRouter>
-            <div>
+        <BrowserRouter>        
+            <div><Header />
                 <Route path="/" component={PostsIndex} />
             </div>
         </BrowserRouter>

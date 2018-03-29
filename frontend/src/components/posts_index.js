@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
+import moment from 'moment';
 
 class PostsIndex extends Component {
     componentDidMount() {
@@ -11,9 +12,21 @@ class PostsIndex extends Component {
     renderPosts() {
         return _.map(this.props.posts, post => {
             return (
-                <li key={post.id}>
-                    {post.title}
-                </li>
+                <article className="post" key={post.id}>
+                    <header>
+                        <h2>{post.title}</h2>
+                    </header>
+                    <section>
+                        <p>
+                            By <strong>{post.author}</strong> in {post.category},
+                                posted on
+                            <time> {moment(post.timestamp).format("dddd, MMMM Do YYYY")} </time>
+                        </p>
+                    </section>
+                    <section>
+                        <p>{post.body}</p>
+                    </section>
+                </article>
             );
         });
     }
@@ -21,10 +34,11 @@ class PostsIndex extends Component {
     render() {
         return (
             <div>
-                <h3>Posts</h3>
-                <ul>
-                    {this.renderPosts()}
-                </ul>
+                <article>
+                    <section className="posts">
+                        {this.renderPosts()}
+                    </section>
+                </article>
             </div>
         );
     }
