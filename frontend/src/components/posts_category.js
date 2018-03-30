@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchCategories } from '../actions/categories';
 
 class PostsCategory extends Component {
@@ -11,17 +12,22 @@ class PostsCategory extends Component {
     renderCategories() {
        return _.map(this.props.categories, category => {
             return (
-                <div key={category.name}>
-                {category.name}
-                </div>
+                <li key={category.name} className="category-section">
+                    {category.name}
+                </li>  
             );
        });
     }
 
     render() {
         return (
-            <div>
-              {this.renderCategories()}
+            <div className="sidebar-column">
+                <Link className="new-post-button" to="/posts/new">
+                    New Post
+                    </Link>
+                <ul>
+                    {this.renderCategories()}
+                </ul>
             </div>
         );
     }

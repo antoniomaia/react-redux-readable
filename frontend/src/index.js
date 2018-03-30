@@ -20,11 +20,13 @@ ReactDOM.render(
         <BrowserRouter>        
             <div>
                 <Header />
-                <PostsCategory />
-                <Switch>
-                    <Route path="/posts/new" component={PostsNew} />
-                    <Route path="/" component={PostsIndex} />
-                </Switch>
+                <div className="main-content">
+                    <PostsCategory />
+                    <Switch>
+                        <Route path="/posts/new" component={PostsNew} />
+                        <Route path="/" component={PostsIndex} />
+                    </Switch>
+                </div>
             </div>
         </BrowserRouter>
     </Provider>
