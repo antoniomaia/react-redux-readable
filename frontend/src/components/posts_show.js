@@ -20,7 +20,7 @@ class PostsShow extends Component {
                         <p>
                             By <strong>{post.author}</strong> in {post.category},
                                 posted on
-                            <time> {moment(post.timestamp).format("dddd, MMMM Do YYYY")} </time>
+                                <time> {moment(post.timestamp).format("dddd, MMMM Do YYYY")} </time>
                         </p>
                     </section>
                     <section>

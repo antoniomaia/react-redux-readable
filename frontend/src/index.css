@@ -68,8 +68,8 @@ a:link {
 
 .new-post-button {
   margin: 0 auto;
-  background-color: #e4f2fd;
-  color: #1e2022;
+  background-color: #b0b3c9;
+  color: #000000;
   padding: 15px;
   font-weight: bold;
 }
@@ -149,8 +149,7 @@ a:link {
   color: red;
 }
 
-.form-wrapper > button {
-  background-color: #e4f2fd;
+.button {
   color: #1e2022;
   padding: 15px;
   width: 25%;
@@ -162,10 +161,23 @@ a:link {
   font-weight: bold;
 }
 
+.form-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+.submit-button {
+  background-color: #b0b3c9;
+  color: #000000;
+}
+
+.cancel-button {
+  background-color: #fc1f49;
+}
+
 @media (max-width: 600px) {
   .form-row > input,
   .form-row > select,
-  .form-wrapper > button {
+  .submit-button, .cancel-button {
     width: 100%;
   }
 }
