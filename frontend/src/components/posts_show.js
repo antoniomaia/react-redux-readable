@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchPosts } from '../actions';
 import moment from 'moment';
 
@@ -13,9 +14,9 @@ class PostsShow extends Component {
         return _.map(this.props.posts, post => {
             return (
                 <article className="post" key={post.id}>
-                    <header>
-                        <h2>{post.title}</h2>
-                    </header>
+                        <Link to={`/posts/${post.id}`}>
+                            <h2>{post.title}</h2>
+                        </Link>
                     <section>
                         <p>
                             By <strong>{post.author}</strong> in {post.category},
