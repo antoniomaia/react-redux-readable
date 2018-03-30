@@ -38,10 +38,6 @@ a:link {
   line-height: 1.70;
 }
 
-.main-column {
-  flex: 80%;
-}
-
 @media (min-width: 900px) {
   .main-content {
     display: flex; 
@@ -51,8 +47,9 @@ a:link {
 
 /* Posts */
 
-.posts {
+.posts-column {
   display: flex;
+  flex: 80%;
   flex-flow: row wrap;
   justify-content: space-around;
   padding: 5px;
@@ -63,7 +60,7 @@ a:link {
   color: #000000;
   padding: 10px 50px;
   margin: 5px;
-  flex-grow: 1;
+  flex-grow: 2;
 }
 
 /* Sidebar */
@@ -93,6 +90,7 @@ a:link {
 }
 
 .sidebar-column ul {
+  margin-top: 50px;
   list-style-type: none;
   padding: 0px;
   line-height: 2.5;
@@ -102,4 +100,72 @@ a:link {
   display: list-item;
   margin: 0;
   border-bottom: 1px solid #dbdbdb;
+}
+
+.sidebar-column li:hover {
+  cursor: pointer;
+  border-bottom: 10px solid #e3f1fc;
+  transition: .5s;
+}
+
+/* New Post Form */
+
+.form-wrapper {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #F5F5F6;
+  margin-top: 50px;
+}
+
+.form-row {
+  display: flex; 
+  flex-direction: column;
+  padding: 10px 30px;
+}
+
+.form-row > label {
+  flex: 1;
+  font-size: 20px;
+}
+
+.form-row > input,
+.form-row > select {
+  flex: 3;
+  height: 2em;
+}
+.form-row > select {
+ background-color: white;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.form-row p {
+  color: red;
+}
+
+.form-wrapper > button {
+  background-color: #e4f2fd;
+  color: #1e2022;
+  padding: 15px;
+  width: 25%;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .form-row > input,
+  .form-row > select,
+  .form-wrapper > button {
+    width: 100%;
+  }
 }

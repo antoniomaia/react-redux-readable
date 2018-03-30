@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCategories } from '../actions/categories';
 
-class PostsCategory extends Component {
+class PostsSidebar extends Component {
     componentDidMount() {
         this.props.fetchCategories();
     }
@@ -13,7 +13,7 @@ class PostsCategory extends Component {
        return _.map(this.props.categories, category => {
             return (
                 <li key={category.name} className="category-section">
-                    {category.name}
+                    <p>{category.name}</p>
                 </li>  
             );
        });
@@ -26,6 +26,7 @@ class PostsCategory extends Component {
                     New Post
                     </Link>
                 <ul>
+                    <li>SHOW ALL</li>
                     {this.renderCategories()}
                 </ul>
             </div>
@@ -37,4 +38,4 @@ function mapStateToProps(state) {
     return { categories: state.categories }
 }
 
-export default connect(mapStateToProps, { fetchCategories })(PostsCategory);
+export default connect(mapStateToProps, { fetchCategories })(PostsSidebar);

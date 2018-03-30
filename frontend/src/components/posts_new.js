@@ -21,7 +21,7 @@ class PostsNew extends Component {
                     type="text"
                     {...field.input}
                 />
-                {touched ? error : ''}
+                <p>{touched ? error : ''}</p>
             </div>
         );
     }
@@ -29,7 +29,7 @@ class PostsNew extends Component {
     renderCategoryFields(field) {
         const { categories } = this.props;
         const { meta: { touched, error } } = field;
-        const className = touched && error ? 'invalid' : null;
+        const className = `form-input ${touched && error ? 'invalid' : ''}`;
         return (
             <div className="form-row">
                 <label>{field.label}</label>
@@ -41,7 +41,7 @@ class PostsNew extends Component {
                         </option>
                     ))}
                 </select>
-                {touched ? error : ''}
+                <p>{touched ? error : ''}</p>
             </div>
 
         );
@@ -66,16 +66,16 @@ class PostsNew extends Component {
                         label="Author"
                         name="author"
                         component={this.renderField}
-                    />
-                    <Field
-                        label="Category"
-                        name="category"
-                        component={field => this.renderCategoryFields(field)}
-                    ></Field>
+                    />                
                     <Field
                         label="Message"
                         name="content"
                         component={this.renderField}
+                    />
+                      <Field
+                        label="Category"
+                        name="category"
+                        component={field => this.renderCategoryFields(field)}
                     />
                     <button type="submit" className="submit-button">Save</button>
                 </div>
