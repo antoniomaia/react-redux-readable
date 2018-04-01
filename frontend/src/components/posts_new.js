@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../actions/categories';
+import { createPost, fetchCategories } from '../actions';
+import { guuid } from '../utils/helpers';
 
 class PostsNew extends Component {
     componentWillMount() {
@@ -21,7 +23,7 @@ class PostsNew extends Component {
                     type="text"
                     {...field.input}
                 />
-                {touched ? error : ''}
+                <p>{touched ? error : ''}</p>
             </div>
         );
     }
@@ -29,7 +31,8 @@ class PostsNew extends Component {
     renderCategoryFields(field) {
         const { categories } = this.props;
         const { meta: { touched, error } } = field;
-        const className = touched && error ? 'invalid' : null;
+        const className = `form-input ${touched && error ? 'invalid' : ''}`;
+
         return (
             <div className="form-row">
                 <label>{field.label}</label>
@@ -41,14 +44,19 @@ class PostsNew extends Component {
                         </option>
                     ))}
                 </select>
-                {touched ? error : ''}
+                <p>{touched ? error : ''}</p>
             </div>
 
         );
     }
 
     onSubmit(values) {
-        console.log(values);
+        values['id'] = guuid();
+        values['timestamp'] = Date.now();
+
+        this.props.createPost(values, () => {
+            this.props.history.push('/');
+        });
     }
 
     render() {
@@ -66,18 +74,21 @@ class PostsNew extends Component {
                         label="Author"
                         name="author"
                         component={this.renderField}
-                    />
+                    />                
                     <Field
+                        label="Message"
+                        name="body"
+                        component={this.renderField}
+                    />
+                      <Field
                         label="Category"
                         name="category"
                         component={field => this.renderCategoryFields(field)}
-                    ></Field>
-                    <Field
-                        label="Message"
-                        name="content"
-                        component={this.renderField}
                     />
-                    <button type="submit" className="submit-button">Save</button>
+                    <div className="form-buttons">
+                        <button type="submit" className="button submit-button">Save</button>
+                        <Link to="/" className="button cancel-button danger">Cancel</Link>
+                    </div>
                 </div>
             </form>
         );
@@ -94,10 +105,10 @@ function validate(values) {
     if (!values.author) {
         errors.author = "Enter a name";
     }
-    if (!values.content) {
-        errors.content = "Enter some content";
+    if (!values.body) {
+        errors.body = "Enter some content";
     }
-    if (!values.categories) {
+    if (!values.category) {
         errors.category = "Choose a category";
     }
     // if errors is empty, the form is fine to submit
@@ -109,10 +120,11 @@ function mapStateToProps(state) {
 }
 
 export default reduxForm({
-    validate,
-    form: 'PostsNewForm'
+    validate,  // validation function given to redux-form
+    form: 'PostsNewForm'  // a unique identifier for this form
 })(
     connect(mapStateToProps, {
-        fetchCategories
+        fetchCategories,
+        createPost
     })(PostsNew)
 );
