@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCategories } from '../actions/categories';
+import { fetchCategories, fetchCategoryPosts, fetchPosts } from '../actions';
 
 class PostsSidebar extends Component {
     componentDidMount() {
@@ -10,13 +10,24 @@ class PostsSidebar extends Component {
     }
 
     renderCategories() {
-       return _.map(this.props.categories, category => {
-            return (
-                <li key={category.name} className="category-section">
-                    <p>{category.name}</p>
-                </li>  
-            );
-       });
+        const { categories, fetchCategoryPosts } = this.props;
+        if (categories) {
+            return _.map(categories, category => {
+                return (
+                    <li key={category.name} className="category-section">
+                        <Link
+                            to={`/${category.path}`}
+                            onClick={() => fetchCategoryPosts(category.path)}
+                        >
+                            {category.name}
+                        </Link>
+                    </li>
+                );
+            });
+        }
+        return (
+            <div>Loading...</div>
+        );
     }
 
     render() {
@@ -26,7 +37,10 @@ class PostsSidebar extends Component {
                     New Post
                     </Link>
                 <ul>
-                    <li>SHOW ALL</li>
+                    <li className="category-section">
+                        <Link to="/" >All</Link>
+                    </li>
+                    
                     {this.renderCategories()}
                 </ul>
             </div>
@@ -38,4 +52,8 @@ function mapStateToProps(state) {
     return { categories: state.categories }
 }
 
-export default connect(mapStateToProps, { fetchCategories })(PostsSidebar);
+export default connect(mapStateToProps, { 
+    fetchCategories,
+    fetchCategoryPosts,
+    fetchPosts
+ })(PostsSidebar);

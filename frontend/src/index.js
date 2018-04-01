@@ -11,7 +11,7 @@ import reducers from './reducers';
 import Header from './components/Header';
 import PostsNew from './components/posts_new';
 import PostsIndex from './components/posts_index';
-import PostsShowItem from './components/posts_show_item';
+import PostsDetail from './components/posts_detail';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -21,8 +21,9 @@ ReactDOM.render(
             <div>
                 <Header />
                 <Switch>
+                    <Route path="/:category" exact component={ props => <PostsIndex {...props} />} />
                     <Route path="/posts/new" component={PostsNew} />
-                    <Route path="/posts/:id" component={PostsShowItem} />
+                    <Route path="/posts/:id" component={PostsDetail} />
                     <Route path="/" component={PostsIndex} />
                 </Switch>
             </div>

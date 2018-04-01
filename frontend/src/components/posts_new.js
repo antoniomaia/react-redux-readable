@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCategories } from '../actions/categories';
-import { createPost } from '../actions';
+import { createPost, fetchCategories } from '../actions';
+import { guuid } from '../utils/helpers';
 
 class PostsNew extends Component {
     componentWillMount() {
@@ -32,6 +32,7 @@ class PostsNew extends Component {
         const { categories } = this.props;
         const { meta: { touched, error } } = field;
         const className = `form-input ${touched && error ? 'invalid' : ''}`;
+
         return (
             <div className="form-row">
                 <label>{field.label}</label>
@@ -50,8 +51,8 @@ class PostsNew extends Component {
     }
 
     onSubmit(values) {
-        // for the purpose of the exercise, the value of the timestamp is always a unique id
-        values['id'] = values['timestamp'] = Date.now();
+        values['id'] = guuid();
+        values['timestamp'] = Date.now();
 
         this.props.createPost(values, () => {
             this.props.history.push('/');
@@ -86,7 +87,7 @@ class PostsNew extends Component {
                     />
                     <div className="form-buttons">
                         <button type="submit" className="button submit-button">Save</button>
-                        <Link to="/" className="button cancel-button">Cancel</Link>
+                        <Link to="/" className="button cancel-button danger">Cancel</Link>
                     </div>
                 </div>
             </form>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostsShow from './posts_show';
+import PostsList from './posts_list';
 import PostsSidebar from './posts_sidebar';
 
 class PostsIndex extends Component {
@@ -7,7 +7,7 @@ class PostsIndex extends Component {
         return (
             <div className="main-content">
                 <PostsSidebar />
-                <PostsShow />
+                <PostsList {...this.props} />
             </div>
         );
     }
