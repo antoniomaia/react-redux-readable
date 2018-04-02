@@ -83,6 +83,7 @@ a:link {
 
 .post h2 {
   color: #000000;
+  text-decoration: underline;
 }
 
 /* Sidebar */
