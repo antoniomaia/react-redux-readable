@@ -121,15 +121,16 @@ a:link {
   display: list-item;
   margin: 0;
   border-bottom: 1px solid #dbdbdb;
+  text-decoration: none;
 }
 
 .sidebar-column li:hover {
   cursor: pointer;
-  border-bottom: 8px solid #e3f1fc;
+  text-decoration: underline #e3f1fc;
   transition: .5s;
 }
 
-/* New Post Form */
+/* Post Form */
 
 .form-wrapper {
   width: 80%;
