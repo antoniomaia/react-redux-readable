@@ -22,8 +22,8 @@ To install and launch the project follow th following steps:
 
 - In another terminal window, start out the front-end
 
-  - `create-react-app frontend`
   - `cd frontend`
+  - `npm install`
   - `npm start`
   - Server running on http://localhost:3000
 
