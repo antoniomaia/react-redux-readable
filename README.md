@@ -20,7 +20,7 @@ To install and launch the project follow th following steps:
   - `node server`
   - Server running on http://localhost:3001
 
-- In another terminal window, start out the front-end
+- In another terminal window, start out the frontend
 
   - `cd frontend`
   - `npm install`
